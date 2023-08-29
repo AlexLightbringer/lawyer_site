@@ -30,6 +30,13 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:list_reviews' %}">Отзывы</a>
         </li>
+          {% if user.is_authenticated %}
+            Привет, {{ user.username }}!
+          <a href="{% url 'users:logout' %}">Выйти</a>
+        {% else %}
+          <a href="{% url 'users:login' %}">Войти</a>
+          <a href="{% url 'users:register' %}">Зарегистрироваться</a>
+        {% endif %}
       </ul>
     </div>
   </div>
