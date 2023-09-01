@@ -2,15 +2,35 @@
 
 {% block content %}
 
+    <style>
+    .col-lg-7{
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
+
 {% for post in posts %}
-    {{ post.title }}
-    {{ post.content }}
+    <div class="container">
+        <div class="post">
+            <div class="col-lg-7 mb-4">
+                <div class="mt-4 h2 text-dark">{{ post.title }}</div>
+                <p class="mt-4">{{ post.content }}</p>
+
+                <div class="d-flex text-small">
+                    <span class="text-muted ml-1">{{ post.date_added }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
     {% empty %}
     <p>Статьи скоро появятся, потому не грустите</p>
 {% endfor %}
-
-<p>
-    <a href="{% url 'blog:new_post'%}">Написать статью</a>
-</p>
 
 {% endblock content %}

@@ -5,6 +5,10 @@ from .forms import PostForm, ReviewForm
 def home(request):
     print(request)
     return render(request, "blog/home.html")
+
+def prices(request):
+    print(request)
+    return render(request, "blog/prices.html")
     
 def list_reviews(request):
     reviews = Review.objects.filter(publish=True)

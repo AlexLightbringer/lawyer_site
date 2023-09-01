@@ -1,11 +1,71 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+    <style>
+        .card {
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            width: 60%;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-top: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-left{
+            text-align: center;
+        }
+
+        td {
+            padding-bottom: 10px;
+        }
+
+        .star-active {
+            color: #FBC02D;
+            margin-top: 10px;
+            margin-bottom: 10px
+        }
+
+        .star-active:hover {
+            color: #F9A825;
+            cursor: pointer
+        }
+
+        .star-inactive {
+            color: #CFD8DC;
+            margin-top: 10px;
+            margin-bottom: 10px
+        }
+
+        .content {
+            font-size: 18px;
+            width: 40%;
+            text-align: left;
+            padding: 10px 10px 10px 30px;
+        }
+
+    </style>
     {% for review in reviews %}
-        {{ review.name }}
-        {{review.content }}
-        {{review.date_added}}
-        {{ review.grade }}
+        <div class="card">
+                <div class="row d-flex">
+                    <div class="d-flex flex-column">
+                        <h3 class="mt-2 mb-0">{{ review.name }}</h3>
+                        <div>
+                            <p class="text-left"><span class="text-muted"> Rate: {{ review.grade }}</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
+                        </div>
+                    </div>
+                    <div class="ml-auto">
+                        <p class="text-muted pt-5 pt-sm-3">{{review.date_added}}</p>
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <p class="content">{{review.content }}</p>
+                </div>
+            </div>
         {% empty %}
             <p>No reviews</p>
     {% endfor %}
