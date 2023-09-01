@@ -3,71 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ООО "УСПЕХ" - Качественные юридические услуги</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Legal agency</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
     <style>
-        a{
-            color: white;
+        .nav {
+            margin-bottom: 0px;
+        }
+
+        .nav a {
+            font: 500 11px Lato;
+            letter-spacing: 2px;
+            padding: 16px !important;
+            color: #a3bfc6 !important;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1000;
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .nav a:hover {
+            color: #FFF !important;
+        }
+
+        .nav li {
+            position: relative;
+        }
+
+        .navbar-inverse .navbar-toggle {
+            border: none;
+        }
+
+        .navbar-collapse {
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .navbar-inverse .navbar-toggle:hover,
+        .navbar-inverse .navbar-toggle:focus,
+        .navbar-inverse .navbar-toggle:active {
+            background: transparent !important;
+        }
+
+        .hover {
+            display: block;
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            background: rgba(132, 250, 176, 0.5)!important;
+            z-index: 0;
+            opacity: 0;
+        }
+
+        @media (max-width: 767px) {
+            .nav {
+                padding-bottom: 20px;
+            }
+
+            .nav a {
+                padding: 12px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                padding-bottom: 20px;
+            }
+        }
+
+        .content-page{
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+
+        #log-user{
+            margin-left: 25%;
+        }
+
+        .hello{
+            font: 11px Lato;
+            letter-spacing: 2px;
+            color: #a3bfc6 !important;
+            text-transform: uppercase;
             text-decoration: none;
-            font-weight: bold;
-        }
-        .btn-success{
-            margin-left: 200px;
-        }
-        .btn-secondary{
-            margin-left: 5px;
-        }
-        .btn-danger{
-            margin-left: 20px;
-        }
-        #hello{
-            margin-left: 150px;
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            color: seagreen;
+            margin-left: 70px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'blog:home' %}">Главная</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Прайс-лист</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Запись на прием</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:blog' %}">Блог</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">О компании</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:list_reviews' %}">Отзывы</a>
-        </li>
-          {% if user.is_authenticated %}
-            <div id="hello"> Привет, {{ user.username }}!</div>
-          <button type="button" class="btn btn-danger"><a href="{% url 'users:logout' %}">Выйти</a></button>
-        {% else %}
-          <button type="button" class="btn btn-success"><a href="{% url 'users:login' %}">Войти</a></button>
-          <button type="button" class="btn btn-secondary"><a href="{% url 'users:register' %}">Зарегистрироваться</a></button>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-</nav>
-
+     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'blog:home' %}">Home</a><span class="hover"></span></li>
+                    <li><a href="#">Prices</a><span class="hover"></span></li>
+                    <li><a href="#">Appointment</a><span class="hover"></span></li>
+                    <li><a href="{% url 'blog:blog' %}">Blog</a><span class="hover"></span></li>
+                    <li><a href="#">About us</a><span class="hover"></span></li>
+                    <li><a href="#">Feedback</a><span class="hover"></span></li>
+                </ul>
+                <ul class="nav navbar-nav" id="log-user">
+                    {% if user.is_authenticated %}
+                      <li><a href="{% url 'users:logout' %}">Log out</a></li>
+                      <li class="hello">Hello, {{ user.username }}!</li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}">Log in</a></li>
+                        <li><a href="{% url 'users:register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+         </div>
+    </nav>
+<div class="content-page">
 {% block content %}
 {% endblock content %}
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $("li").hover(
+            function () {
+                $(this).find("span").stop().animate({
+                    width: "100%",
+                    opacity: "1",
+                }, 400);
+            },
+            function () {
+                $(this).find("span").stop().animate({
+                    width: "0%",
+                    opacity: "0",
+                }, 400);
+            }
+        );
+    </script>
 </body>
 </html>
