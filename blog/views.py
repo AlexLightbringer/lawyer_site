@@ -1,19 +1,28 @@
 from django.shortcuts import render, redirect
-from .models import Post, Review
-from .forms import PostForm, ReviewForm
+from .models import Post, Review, Appointment
+from .forms import PostForm, ReviewForm, AppointmentForm
+
 
 def home(request):
     print(request)
     return render(request, "blog/home.html")
 
+
 def prices(request):
     print(request)
     return render(request, "blog/prices.html")
-    
+
+
+def about(request):
+    print(request)
+    return render(request, "blog/about.html")
+
+
 def list_reviews(request):
     reviews = Review.objects.filter(publish=True)
     context = {"reviews": reviews}
     return render(request, "blog/reviews.html", context=context)
+
 
 def create_review(request):
     if request.method != 'POST':
@@ -28,11 +37,11 @@ def create_review(request):
     return render(request, "blog/create_review.html", context=context)
 
 
-
 def posts(request):
     posts = Post.objects.filter(publish=True)
     context = {"posts": posts}
     return render(request, "blog/blog.html", context=context)
+
 
 def new_post(request):
     if request.method != 'POST':
@@ -44,3 +53,15 @@ def new_post(request):
             return redirect('/blog')
     context = {"form": form}
     return render(request, "blog/new_post.html", context=context)
+
+
+def appointment(request):
+    if request.method != 'POST':
+        form = AppointmentForm()
+    else:
+        form = AppointmentForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/home')
+    context = {"form": form}
+    return render(request, "blog/appointment.html", context=context)
