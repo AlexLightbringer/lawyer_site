@@ -14,6 +14,7 @@
             text-align: center;
             margin-left: auto;
             margin-right: auto;
+            font: 500 18px Lato;
         }
 
         .text-left{
@@ -24,28 +25,10 @@
             padding-bottom: 10px;
         }
 
-        .star-active {
-            color: #FBC02D;
-            margin-top: 10px;
-            margin-bottom: 10px
-        }
-
-        .star-active:hover {
-            color: #F9A825;
-            cursor: pointer
-        }
-
-        .star-inactive {
-            color: #CFD8DC;
-            margin-top: 10px;
-            margin-bottom: 10px
-        }
-
         .content {
             font-size: 18px;
-            width: 40%;
-            text-align: left;
-            padding: 10px 10px 10px 30px;
+            padding: 10px 10px 10px 10px;
+            text-align: justify;
         }
 
     </style>
@@ -55,17 +38,17 @@
                     <div class="d-flex flex-column">
                         <h3 class="mt-2 mb-0">{{ review.name }}</h3>
                         <div>
-                            <p class="text-left"><span class="text-muted"> Rate: {{ review.grade }}</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
+                            <p class="text-left"><span class="text-muted"> Rate: {{ review.grade }}</span></p>
                         </div>
                     </div>
                     <div class="ml-auto">
                         <p class="text-muted pt-5 pt-sm-3">{{review.date_added}}</p>
                     </div>
                 </div>
-                <div class="row text-left">
-                    <p class="content">{{review.content }}</p>
+                <div class="content">
+                    <p>{{review.content }}</p>
                 </div>
-            </div>
+        </div>
         {% empty %}
             <p>No reviews</p>
     {% endfor %}

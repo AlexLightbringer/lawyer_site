@@ -1,6 +1,288 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<p>Тут что-то будет</p>
+    <style>
+        /* BUTTON */
+        .play-btn {
+          width: 100px;
+          height: 100px;
+          background: radial-gradient( rgba(45, 146, 43, 0.8) 60%, rgba(195, 248, 242, 0.8) 62%);
+          border-radius: 50%;
+          position: relative;
+          display: block;
+          margin-left: 450px;
+          box-shadow: 0px 0px 25px 3px rgba(143, 211, 244, 0.5);
+        }
+
+        .play-btn::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          -webkit-transform: translateX(-40%) translateY(-50%);
+          transform: translateX(-40%) translateY(-50%);
+          transform-origin: center center;
+          width: 0;
+          height: 0;
+          border-top: 15px solid transparent;
+          border-bottom: 15px solid transparent;
+          border-left: 25px solid #fff;
+          z-index: 100;
+          -webkit-transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+
+        /* pulse wave */
+        .play-btn:before {
+          content: "";
+          position: absolute;
+          width: 150%;
+          height: 150%;
+          -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+          -webkit-animation: pulsate1 2s;
+          animation: pulsate1 2s;
+          -webkit-animation-direction: forwards;
+          animation-direction: forwards;
+          -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+          -webkit-animation-timing-function: steps;
+          animation-timing-function: steps;
+          opacity: 1;
+          border-radius: 50%;
+          border: 5px solid rgba(143, 211, 244, 0.5);
+          top: -30%;
+          left: -30%;
+          background: rgba(198, 16, 0, 0);
+        }
+
+        @-webkit-keyframes pulsate1 {
+          0% {
+            -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+            opacity: 1;
+            box-shadow: inset 0px 0px 25px 3px rgba(143, 211, 244, 0.5), 0px 0px 25px 10px rgba(143, 211, 244, 0.5);
+          }
+          100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 0;
+            box-shadow: none;
+          }
+        }
+
+        @keyframes pulsate1 {
+          0% {
+            -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+            opacity: 1;
+            box-shadow: inset 0px 0px 25px 3px rgba(255, 255, 255, 0.75), 0px 0px 25px 10px rgba(255, 255, 255, 0.75);
+          }
+          100% {
+            -webkit-transform: scale(1, 1);
+            transform: scale(1);
+            opacity: 0;
+            box-shadow: none;
+          }
+        }
+        /* TITLE TEXT */
+        .about-me-name{
+            font: 500 40px Lato;
+        }
+        .about-me-text{
+            font: 500 20px Lato;
+            width: 50%;
+            text-align: justify;
+        }
+        /* TITLE IMAGE */
+        .about-me-image{
+           font: 500 18px Lato;
+           width: 50%;
+           margin-left: 60%;
+           margin-top: -250px;
+        }
+
+        .about-me-cases{
+            margin-top: -50px;
+            margin-left: 10px;
+            position: absolute;
+            background-color: rgba(45, 146, 43, 0.8);
+            border-radius: 5px;
+            padding: 5px;
+            color: white;
+        }
+        .about-me-years{
+            margin-top: -50px;
+            margin-left: 150px;
+            position: absolute;
+            background-color: rgba(45, 146, 43, 0.8);
+            border-radius: 5px;
+            padding: 5px;
+            color: white;
+        }
+        /* OFFER CONTAINER */
+        .offer-title{
+            margin-top: 150px;
+            font: 500 40px Lato;
+        }
+
+        .offer-p{
+            font: 500 20px Lato;
+            width: 70%;
+            text-align: justify;
+        }
+
+        .offer-text{
+            width: 50%;
+        }
+
+        .offer-container{
+          background-color: black;
+          border-radius: 5px;
+          width: 500px;
+          margin-left: 40%;
+          margin-top: -100px;
+        }
+
+        .offer-table{
+            font: 500 12px Lato;
+            color: white;
+        }
+        .offer-table tr{
+            padding: 10px;
+        }
+        .offer-table td{
+            padding: 10px;
+        }
+
+        .offer-table b{
+            font: 500 20px Lato;
+        }
+
+        .guarantee-title{
+            margin-top: 150px;
+            font: 500 40px Lato;
+        }
+
+        .guarantee-subtitle{
+            font: 500 30px Lato;
+        }
+
+        .guarantee-p{
+            font: 500 20px Lato;
+            width: 45%;
+            text-align: justify;
+        }
+
+        .guarantee-img{
+            margin-left: 50%;
+            margin-top: -150px;
+        }
+
+        .specialization-title{
+            margin-left: 50%;
+            margin-top: -450px;
+            font: 500 40px Lato;
+        }
+
+        .specialization-subtitle{
+            font: 500 30px Lato;
+            margin-left: 50%;
+        }
+
+        .specialization-p{
+            font: 500 20px Lato;
+            width: 40%;
+            margin-left: 50%;
+            text-align: justify;
+        }
+
+        .specialization-img{
+            margin-top: 150px;
+        }
+
+        .contact-title{
+            margin-top: 150px;
+            font: 500 40px Lato;
+        }
+
+        .contact-subtitle{
+            font: 500 30px Lato;
+        }
+
+        .contact-p{
+            font: 500 20px Lato;
+            width: 70%;
+            text-align: justify;
+            margin-top: 50px;
+        }
+    </style>
+
+<section class="about-me-section" id="header">
+     <div class="about-me-text">
+         <h1 class="about-me-name">ALEXANDRA MOSYAGINA</h1>
+         <p class="about-me-p">People trust me with their problems and I solve them professionally. My golden rule: do everything quickly and as well as possible. Even in the most difficult situations you can find a way out, so you shouldn’t give up. Make an appointment with me, and we will find a solution together.</p>
+         <a class="play-btn" href="https://youtu.be/kDiWeAJhi8k"></a>
+     </div>
+     <div class="about-me-image">
+         <img src="https://attorneyatlawmagazine.com/wp-content/uploads/2019/07/female-lawyers.jpg" alt="" title="about-me" width="60%">
+         <div class="about-me-cases">90% won cases<br> for my clients</div>
+         <div class="about-me-years">9 years<br> of work experience</div>
+     </div>
+</section>
+
+<section class="offer-section">
+    <div class="offer-text">
+        <h1 class="offer-title">WHAT DO I OFFER</h1>
+        <p class="offer-p">You expect <strong>a professional</strong> to work on your problem. I assure you that your problems are in good hands.</p>
+    </div>
+    <div class="offer-container">
+        <table class="offer-table">
+            <tr>
+                <td><b>Guarantee - my reputation</b><br>
+                    People trust me
+                </td>
+                <td><b>Reliable partnership</b><br>
+                    I'll be by your side
+                </td>
+                <td><b>Go all the way</b><br>
+                    I'm with you until your problem is solved
+                </td>
+            </tr>
+            <tr>
+                <td><b>Detailed strategy to win</b><br>
+                    I will develop the best plan for your situation
+                </td>
+                <td><b>Price-quality</b><br>
+                    You pay for quality services
+                </td>
+                <td><b>Fast work</b><br>
+                    I'm not putting your case off until tomorrow
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section class="guarantee-section">
+    <h1 class="guarantee-title">GUARANTEE</h1>
+    <h2 class="guarantee-subtitle">The guarantee stated in the contract</h2>
+    <p class="guarantee-p">You do not pay the full amount <strong>at once</strong>. You pay for each stage of work gradually. If something goes wrong, you won't pay for what wasn't done. The main payment comes from <strong>the amount awarded</strong> to you.<br></p>
+    <div class="guarantee-img"><img src="https://nationaljurist.com/wp-content/uploads/2022/09/Untitled-design-3-1024x640.png" alt="" title="guarantee-img" width="70%"></div>
+</section>
+
+<section class="specialization-section">
+    <div class="specialization-img"><img src="https://njmonthly.com/wp-content/uploads/cache/2014/07/Janet_Montgomery/667318935.jpg" alt="" title="specialization" height="50%"></div>
+    <h1 class="specialization-title">MY SPECIALIZATION</h1>
+    <h2 class="specialization-subtitle">What cases do I take on?</h2>
+    <p class="specialization-p">I specialize in <strong>protecting citizens</strong>. Is your boss violating your rights at work? Are other heirs claiming your share of the inheritance? Are government services inactive and not responding to your requests? Are you getting divorced and your spouse is claiming your property? Did you receive poor service? I will help solve these problems and many others. Make an appointment with me and we will discuss everything.</p>
+</section>
+
+<section class="contact-section">
+    <h1 class="contact-title">CONTACTS</h1>
+    <h2 class="contact-subtitle">Get in Touch with Us</h2>
+    <div class="mbr-section-btn"><a class="btn btn-success display-4" href="{% url 'blog:appointment' %}">Make an appointment<span class="fa-long-arrow-right fa mbr-iconfont mbr-iconfont-btn"></span></a></div>
+    <p class="contact-p"><b>Alexandra Mosyagina</b><br>Krasnoyarsk, Svobodnaya 5G, office 7<br>mosyagina.alexandra@mail.ru<br>+7 983 285 23 96</p>
+</section>
 
 {% endblock content %}
