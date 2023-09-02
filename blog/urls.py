@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import home, posts, new_post, list_reviews, create_review, prices, appointment, about
+from .views import home, posts, new_post, list_reviews, create_review, prices, appointment
 
 app_name = "blog"
 
@@ -12,5 +12,4 @@ urlpatterns = [
     path("create_review/", create_review, name="create_review"),
     path("prices/", prices, name="prices"),
     path("appointment/", appointment, name="appointment"),
-    path("about/", about, name="about"),
 ]

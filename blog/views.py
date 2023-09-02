@@ -12,12 +12,6 @@ def prices(request):
     print(request)
     return render(request, "blog/prices.html")
 
-
-def about(request):
-    print(request)
-    return render(request, "blog/about.html")
-
-
 def list_reviews(request):
     reviews = Review.objects.filter(publish=True)
     context = {"reviews": reviews}

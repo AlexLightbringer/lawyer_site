@@ -14,6 +14,10 @@
         margin-left: auto;
         margin-right: auto;
     }
+
+    .container{
+        font: 500 18px Lato;
+    }
     </style>
 
 {% for post in posts %}
@@ -30,7 +34,7 @@
         </div>
     </div>
     {% empty %}
-    <p>Статьи скоро появятся, потому не грустите</p>
+    <p>No articles</p>
 {% endfor %}
 
 {% endblock content %}
