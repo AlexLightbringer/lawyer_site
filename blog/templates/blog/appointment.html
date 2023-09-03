@@ -49,22 +49,7 @@
                       <h2 class="text-uppercase text-center mb-5">Make an appointment</h2>
                       <form method="post" action="{% url 'blog:appointment' %}">
                         {% csrf_token %}
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form1Example1cg" class="form-control form-control-lg" name="name"/>
-                            <label class="form-label" for="form1Example1cg">Your Name</label>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="tel" id="form2Example2cg" class="form-control form-control-lg" name="phone"/>
-                            <label class="form-label" for="form2Example2cg">Phone number</label>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="content"/>
-                            <label class="form-label" for="form3Example3cg">Email</label>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form4Example3cg" class="form-control form-control-lg" name="problem"/>
-                            <label class="form-label" for="form4Example3cg">Problem description</label>
-                        </div>
+                        {{ form.as_p }}
                         <button type="submit" name="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Submit</button>
                     </form>
                     </div>

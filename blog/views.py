@@ -59,6 +59,6 @@ def appointment(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your request for consultation has been accepted! We will contact you soon!")
-            return redirect('/home')
+            return redirect('/')
     context = {"form": form}
     return render(request, "blog/appointment.html", context=context)

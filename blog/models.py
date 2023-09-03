@@ -25,8 +25,8 @@ class Review(models.Model):
 class Appointment(models.Model):
     name = models.CharField(max_length=50, verbose_name="Name", blank=False)
     phone = models.CharField(max_length=10, verbose_name="Phone number", blank=False)
-    email = models.TextField(max_length=50, verbose_name="Email address", blank=False)
-    problem = models.TextField(max_length=3000, verbose_name="Problem text", blank=False)
+    email = models.EmailField(max_length=50, verbose_name="Email address", blank=False)
+    problem = models.TextField(max_length=500, verbose_name="Problem text", blank=False)
 
 
     def __str__(self) -> str:
