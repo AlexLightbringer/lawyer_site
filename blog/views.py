@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import Post, Review, Appointment
 from .forms import PostForm, ReviewForm, AppointmentForm
@@ -26,6 +27,7 @@ def create_review(request):
         form = ReviewForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Your review has been added!")
             return redirect('/reviews')
     context = {"form": form}
     return render(request, "blog/create_review.html", context=context)
@@ -56,6 +58,7 @@ def appointment(request):
         form = AppointmentForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Your request for consultation has been accepted! We will contact you soon!")
             return redirect('/home')
     context = {"form": form}
     return render(request, "blog/appointment.html", context=context)

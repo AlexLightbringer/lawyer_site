@@ -222,7 +222,13 @@
            margin-top: -300px;
         }
     </style>
-
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 <section class="about-me-section" id="header">
      <div class="about-me-text">
          <h1 class="about-me-name">ALEXANDRA MOSYAGINA</h1>
