@@ -54,22 +54,18 @@
     }
     </style>
 
-{% for post in posts %}
     <div class="container">
         <div class="post">
             <div class="col-lg-7 mb-4">
                 <div class="mt-4 h2 text-dark">{{ post.title }}</div>
                 <p class="mt-4">{{ post.content }}</p>
+                <span class="read-more"><a href="{% url 'blog:blog' %}">Back</a> </span>
                 <div class="d-flex text-small">
                     <span class="text-muted ml-1">{{ post.date_added }}</span>
-                    <span class="read-more"><a href="{% url 'blog:blog' %}">Back</a> </span>
                 </div>
             </div>
         </div>
     </div>
-    {% empty %}
-    <p style="font: 500 18px Lato;">This article isn't found</p>
-    <span class="read-more" style="font: 500 18px Lato;"><a href="{% url 'blog:blog' %}">Back</a></span>
-{% endfor %}
+
 
 {% endblock content %}
