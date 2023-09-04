@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Post, Review, Appointment
+from .models import Post, Review, Appointment, BlogComment
 from .forms import PostForm, ReviewForm, AppointmentForm, CommentForm
 
 
@@ -41,12 +41,12 @@ def posts(request):
 
 def detail_page(request, id):
     post = Post.objects.get(id=id)
-    return render(request, 'blog/detail.html', {'post': post})
+    comments = BlogComment.objects.filter(article=post, status=True)
+    return render(request, 'blog/detail.html', {'post': post, 'comments': comments})
 
 @login_required
 def add_comment(request, id):
     post = Post.objects.get(id=id)
-
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():

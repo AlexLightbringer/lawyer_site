@@ -89,7 +89,7 @@
 <div class="container">
     <h2 style="text-align: center">Comments</h2>
     <ul>
-        {% for comment in post.BlogComment_Post.all %}
+        {% for comment in comments %}
              <div class="col-lg-7 mb-4">
                  <div class="mt-4 h2 text-dark"><b>{{ comment.user_name }}</b> said:</div>
                 <p class="mt-4">{{ comment.comment }}</p>
