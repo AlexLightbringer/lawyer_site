@@ -1,0 +1,75 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    <style>
+    .col-lg-7{
+        box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        text-align: center;
+    }
+    .read-more a {
+        background-image: linear-gradient(to right, #ACE1AF, #54b3d6 50%, #006A4E 50%);
+        background-size: 200% 100%;
+        background-position: -100%;
+        display: inline-block;
+        padding: 5px 0;
+        position: relative;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+          transition: all 0.3s ease-in-out;
+        font-weight: bold;
+    }
+
+    .read-more a:before{
+      content: '';
+      background: #54b3d6;
+      display: block;
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .read-more a:hover {
+     background-position: 0;
+    }
+
+    .read-more a:hover::before{
+      width: 100%;
+    }
+    .container{
+        font: 500 18px Lato;
+    }
+    </style>
+
+{% for post in posts %}
+    <div class="container">
+        <div class="post">
+            <div class="col-lg-7 mb-4">
+                <div class="mt-4 h2 text-dark">{{ post.title }}</div>
+                <p class="mt-4">{{ post.content }}</p>
+                <div class="d-flex text-small">
+                    <span class="text-muted ml-1">{{ post.date_added }}</span>
+                    <span class="read-more"><a href="{% url 'blog:blog' %}">Back</a> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p style="font: 500 18px Lato;">This article isn't found</p>
+    <span class="read-more" style="font: 500 18px Lato;"><a href="{% url 'blog:blog' %}">Back</a></span>
+{% endfor %}
+
+{% endblock content %}

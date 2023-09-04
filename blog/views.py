@@ -38,6 +38,9 @@ def posts(request):
     context = {"posts": posts}
     return render(request, "blog/blog.html", context=context)
 
+def detail_page(request, id):
+    post = Post.objects.get(id=id)
+    return render(request, 'blog/detail.html', {'post': post})
 
 def new_post(request):
     if request.method != 'POST':
