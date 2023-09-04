@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -9,7 +10,13 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
-    
+
+class BlogComment(models.Model):
+    article = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name="Post", blank=False, related_name="BlogComment_Post")
+    user_name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User name", blank=False)
+    comment = models.TextField(verbose_name="Comment text", blank=False)
+    date_added = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(verbose_name="Status", default=False)
 
 class Review(models.Model):
     name = models.CharField(max_length=50, verbose_name="Name", blank=False)

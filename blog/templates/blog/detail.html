@@ -49,8 +49,26 @@
     .read-more a:hover::before{
       width: 100%;
     }
+
     .container{
         font: 500 18px Lato;
+    }
+
+    .gradient-custom-4 {
+            /* fallback for old browsers */
+            background: #84fab0;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+    }
+
+    .btn{
+        width: 30%;
+        margin-left: auto;
+        margin-right: auto;
     }
     </style>
 
@@ -67,5 +85,27 @@
         </div>
     </div>
 
+<div class="container">
+    <h2 style="text-align: center">Comments</h2>
+    <ul>
+        {% for comment in post.BlogComment_Post.all %}
+             <div class="col-lg-7 mb-4">
+                 <div class="mt-4 h2 text-dark"><b>{{ comment.user_name }}</b> said:</div>
+                <p class="mt-4">{{ comment.comment }}</p>
+            </div>
+        {% empty %}
+            No comments yet.
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="col-lg-7 mb-4" style="margin-top: 50px">
+<div class="mt-4 h2 text-dark">Add comment</div>
+    <form action="{% url 'blog:add_comment' post.id%}" method="post">
+        {% csrf_token %}
+        {{ form.comment }}
+        <button type="submit" name="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Add</button>
+    </form>
+</div>
 
 {% endblock content %}

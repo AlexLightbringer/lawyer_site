@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import Post, Review, Appointment
-from .forms import PostForm, ReviewForm, AppointmentForm
+from .forms import PostForm, ReviewForm, AppointmentForm, CommentForm
 
 
 def home(request):
@@ -41,6 +41,22 @@ def posts(request):
 def detail_page(request, id):
     post = Post.objects.get(id=id)
     return render(request, 'blog/detail.html', {'post': post})
+
+def add_comment(request, id):
+    post = Post.objects.get(id=id)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = post
+            comment.save()
+            return redirect('blog:detail_page', id=id)
+    else:
+        form = CommentForm()
+
+    context = {'form': form, 'post': post}
+    return render(request, 'blog/detail.html', context)
 
 def new_post(request):
     if request.method != 'POST':
