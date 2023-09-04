@@ -1,4 +1,4 @@
-# Legal Agency Blog
+# Legal Agency
 
 This Django project implements a blog for a legal agency. It allows users to view blog posts, create new posts, read reviews, and schedule appointments. The blog also includes user registration and login functionality.
 
