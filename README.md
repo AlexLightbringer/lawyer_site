@@ -19,7 +19,6 @@ The project's main components are organized as follows:
 - `blog` app: Contains models, forms, views, and templates for the blog functionality.
 - `users` app: Handles user registration and authentication.
 - Templates: HTML templates for rendering pages.
-- Static Files: CSS, JavaScript, and image files.
 
 ## Models
 
@@ -30,6 +29,14 @@ The project's main components are organized as follows:
 - `publish`: A boolean field indicating whether the post is published.
 - `date_added`: The date and time when the post was created.
 
+### BlogComment
+
+- `article`: A field linking an article with comments.
+- `user_name`: The nickname of the person leaving the comment.
+- `comment`:  A text of the comment.
+- `date_added`: A description of the problem or reason for the appointment.
+- `status`: A boolean field indicating whether the comment is published.
+  
 ### Review
 
 - `name`: The name of the reviewer.
@@ -51,6 +58,7 @@ The project's main components are organized as follows:
 - `PostForm`: Form for creating and editing blog posts.
 - `ReviewForm`: Form for creating and editing reviews.
 - `AppointmentForm`: Form for scheduling appointments.
+- `CommentForm`: Form for creating and editing blog comments.
 
 ## Views
 
